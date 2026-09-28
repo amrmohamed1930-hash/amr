@@ -1,0 +1,39 @@
+{
+  "name": "watanya-store-api",
+  "version": "1.0.0",
+  "description": "Backend API for الوطنية للتمويل (Watanya Finance) e-commerce store",
+  "type": "module",
+  "main": "src/server.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "db:setup": "node scripts/db-setup.js",
+    "db:seed": "node scripts/seed.js",
+    "test": "node scripts/test-db-setup.js",
+    "smoke": "node scripts/smoke-test.js"
+  },
+  "keywords": [
+    "ecommerce",
+    "express",
+    "mysql",
+    "arabic",
+    "rtl"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "compression": "^1.8.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "express-rate-limit": "^8.2.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.1",
+    "mysql2": "^3.15.3",
+    "zod": "^4.1.13"
+  }
+}

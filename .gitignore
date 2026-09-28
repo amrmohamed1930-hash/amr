@@ -1,0 +1,19 @@
+node_modules/
+.env
+.env.local
+.env.*.local
+npm-debug.log*
+*.log
+.DS_Store
+coverage/
+dist/
+tmp/
+# Pre-purge snapshot of seeded rows (see sql/002_remove_test_data.sql). Local
+# safety net only; delete once the purge is verified on every environment.
+.purge-backup.json
+# Uploaded product images are user content and stay out of the repo, but the
+# seed references uploads/iphone.png as the placeholder for every product, so
+# that one file has to be tracked or a fresh clone renders no images at all.
+uploads/*
+!uploads/.gitkeep
+!uploads/iphone.png

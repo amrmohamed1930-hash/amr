@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>لوحة التحكم | الوطنية للتمويل</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-body">
+
+<!-- SIGN IN -->
+<div class="admin-login" id="adminLogin" hidden>
+    <form class="admin-login-box" id="adminLoginForm" novalidate>
+        <div class="logo-circle"><span>الوطنية<br>للتمويل</span></div>
+        <h1>لوحة تحكم المتجر</h1>
+        <p class="admin-sub">هذه الصفحة للمشرفين فقط. سجّل الدخول بحساب من جدول المشرفين.</p>
+
+        <label>البريد الإلكتروني أو رقم الجوال
+            <input type="text" name="identifier" autocomplete="username" required>
+        </label>
+        <label>كلمة المرور
+            <input type="password" name="password" autocomplete="current-password" required>
+        </label>
+        <p class="form-error" data-error hidden></p>
+        <button class="btn-primary" type="submit">تسجيل الدخول</button>
+        <p class="hint">حساب تجريبي: admin@watanya.com / Watanya@2026</p>
+        <p class="hint"><a href="index.html">رجوع إلى المتجر</a></p>
+    </form>
+</div>
+
+<!-- PANEL -->
+<div class="admin-shell" id="adminPanel" hidden>
+    <header class="admin-top">
+        <div class="admin-top-inner">
+            <a class="logo" href="index.html">
+                <div class="logo-circle"><span>الوطنية<br>للتمويل</span></div>
+            </a>
+            <div class="admin-top-meta">
+                <span class="admin-name" id="adminName">مشرف</span>
+                <span class="admin-session" id="adminSession"></span>
+            </div>
+            <div class="admin-top-actions">
+                <a class="btn-ghost" href="index.html">المتجر</a>
+                <button class="btn-ghost" id="adminSignout" type="button">تسجيل الخروج</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="admin-main">
+        <section class="stat-grid" id="statGrid" aria-live="polite"></section>
+
+        <div class="admin-cols">
+            <!-- orders -->
+            <section class="admin-card">
+                <div class="admin-card-head">
+                    <h2>الطلبات</h2>
+                    <div class="admin-filters">
+                        <select id="orderStatus"></select>
+                        <button class="btn-ghost" id="ordersReload" type="button">تحديث</button>
+                    </div>
+                </div>
+                <div class="admin-table-wrap" id="ordersBody"></div>
+                <div class="pager" id="ordersPager" hidden></div>
+            </section>
+
+            <!-- single product + price -->
+            <section class="admin-card">
+                <div class="admin-card-head">
+                    <h2>منتج محدد</h2>
+                </div>
+                <form class="admin-form" id="productForm" novalidate>
+                    <label>رقم المنتج
+                        <input type="text" name="id" inputmode="numeric" required>
+                    </label>
+                    <button class="btn-primary" type="submit">عرض</button>
+                </form>
+                <div id="productBody"></div>
+
+                <form class="admin-form" id="priceForm" novalidate hidden>
+                    <h3 class="admin-sub">تعديل السعر</h3>
+                    <div class="admin-grid-2">
+                        <label>السعر الأساسي
+                            <input type="number" name="base_price" min="0" step="0.01" required>
+                        </label>
+                        <label>سعر البيع (اتركه فارغاً للرجوع للسعر الأساسي)
+                            <input type="number" name="sale_price" min="0" step="0.01">
+                        </label>
+                    </div>
+                    <label>سبب التغيير
+                        <input type="text" name="reason" maxlength="190" placeholder="مثال: تخفيض موسمي">
+                    </label>
+                    <button class="btn-primary" type="submit">حفظ السعر</button>
+                </form>
+
+                <h3 class="admin-sub">سجل الأسعار</h3>
+                <div class="admin-table-wrap" id="historyBody"></div>
+            </section>
+        </div>
+    </main>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="admin.js"></script>
+</body>
+</html>

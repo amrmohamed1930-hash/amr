@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مخطط العلاقات - قاعدة البيانات | الوطنية للتمويل</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        body { background:#f4f6f8; margin:0; font-family:'Segoe UI', Tahoma, Arial, sans-serif; }
+        .header { background:#0b3d2e; color:#fff; padding:18px 24px; }
+        .wrap { max-width:1400px; margin:20px auto; padding:0 16px; }
+        .card { background:#fff; border-radius:12px; padding:24px; box-shadow:0 2px 10px rgba(0,0,0,.06); }
+        .mermaid { direction:ltr; }
+        .legend { display:flex; gap:18px; flex-wrap:wrap; margin:16px 0; font-size:13px; color:#333; }
+        .legend b { color:#0b3d2e; }
+    </style>
+</head>
+<body>
+
+<div class="header"></div>
+
+<div class="wrap">
+    <div class="card">
+        <div class="legend">
+            <span><b>1</b> .. <b>∞</b> : One-to-many relationship</span>
+            <span><b>∞</b> .. <b>∞</b> : Many-to-many relationship (junction table)</span>
+            <span><b>|</b> : Mandatory (NOT NULL)</span>
+            <span><b>o</b> : Optional (NULL)</span>
+        </div>
+        <pre class="mermaid">
+erDiagram
+    CATEGORIES ||--o{ PRODUCT_CATEGORIES : ""
+    BRANDS ||--o{ PRODUCTS : "has brands"
+    PRODUCTS ||--o{ PRODUCT_IMAGES : "images"
+    PRODUCTS ||--o{ PRODUCT_CATEGORIES : ""
+    PRODUCTS ||--o{ PRICE_HISTORY : "price changes"
+    CUSTOMERS ||--o{ CART_ITEMS : "owns cart"
+    CART_ITEMS ||--o{ CART_PRODUCT : "contains products"
+    PRODUCTS ||--o{ CART_PRODUCT : "added to cart"
+    ADMINS ||--o{ PRICE_HISTORY : "changed by"
+
+    CATEGORIES {
+        int id PK
+        int parent_id FK
+        varchar name_ar
+        varchar name_en
+        varchar slug UK
+    }
+    BRANDS {
+        int id PK
+        varchar name_ar
+        varchar name_en
+        varchar slug UK
+    }
+    PRODUCTS {
+        int id PK
+        int brand_id FK
+        varchar name_ar
+        decimal base_price
+        decimal sale_price
+        decimal rating_avg
+        tinyint is_loanable
+        tinyint stock_quantity
+    }
+    PRODUCT_CATEGORIES {
+        int product_id PK,FK
+        int category_id PK,FK
+    }
+    PRODUCT_IMAGES {
+        int id PK
+        int product_id FK
+        varchar image_path
+        tinyint is_primary
+    }
+    CUSTOMERS {
+        int id PK
+        varchar full_name
+        varchar email UK
+        varchar phone UK
+        varchar city
+        varchar street
+        tinyint is_active
+    }
+    ADMINS {
+        int id PK
+        varchar full_name
+        varchar email UK
+        varchar phone UK
+        tinyint is_active
+    }
+    CART_ITEMS {
+        int id PK
+        int customer_id FK
+    }
+    CART_PRODUCT {
+        int id PK
+        int cart_item_id FK
+        int product_id FK
+        int amount
+        decimal price
+    }
+    PRICE_HISTORY {
+        int id PK
+        int product_id FK
+        decimal old_price
+        decimal new_price
+        int changed_by FK
+        datetime changed_at
+    }
+        </pre>
+    </div>
+</div>
+
+<script>
+    mermaid.initialize({ startOnLoad: true, theme: 'forest', er: { useMaxWidth: true } });
+</script>
+</body>
+</html>
