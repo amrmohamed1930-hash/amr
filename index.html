@@ -13,16 +13,16 @@
 <div class="topbar">
     <div class="topbar-inner">
         <div class="topbar-left">
-            <a href="#">اللغة العربية ▾</a>
+            <button type="button" id="langToggle" class="lang-btn">اللغة العربية ▾</button>
             <span class="sep">|</span>
-            <a href="#">العملة: ر.س ▾</a>
+            <a href="#" data-i18n="top.currency">العملة: ر.س ▾</a>
         </div>
         <div class="topbar-right">
-            <span class="topbar-item"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg> الدعم عبر الهاتف <strong>16358</strong></span>
+            <span class="topbar-item"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg> <span data-i18n="top.phone">الدعم عبر الهاتف</span> <strong>16358</strong></span>
             <span class="sep">|</span>
-            <span class="topbar-item"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> الدعم عبر البريد الإلكتروني <strong>egypt@watanya.com</strong></span>
+            <span class="topbar-item"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> <span data-i18n="top.email">الدعم عبر البريد الإلكتروني</span> <strong>egypt@watanya.com</strong></span>
             <span class="sep">|</span>
-            <span class="topbar-item"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg> مركز المساعدة <strong>help.watanya.com</strong></span>
+            <span class="topbar-item"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg> <span data-i18n="top.help">مركز المساعدة</span> <strong>help.watanya.com</strong></span>
         </div>
     </div>
 </div>
@@ -31,15 +31,15 @@
 <header class="header">
     <div class="header-inner">
         <a class="logo" href="#">
-            <div class="logo-circle"><span>الوطنية<br>للتمويل</span></div>
+            <div class="logo-circle"><span data-i18n="logo">الوطنية<br>للتمويل</span></div>
         </a>
         <div class="search-bar">
-            <input type="text" id="productSearch" placeholder="ابحث عن المنتجات" autocomplete="off">
-            <button id="searchBtn" aria-label="بحث"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></button>
+            <input type="text" id="productSearch" data-i18n-ph="search.ph" placeholder="ابحث عن المنتجات" autocomplete="off">
+            <button id="searchBtn" aria-label="بحث" data-i18n-aria="search.aria"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></button>
         </div>
         <div class="hdr-actions">
-            <a class="hdr-btn" id="wishlistBtn" href="#"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> مفضلتي<span class="badge" id="wishlistCount" hidden>0</span></a>
-            <a class="hdr-btn" id="cartBtn" href="#"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM7.17 14.75l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1 1 0 0 0 20 4.25H5.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h12v-2H7.42a.25.25 0 0 1-.25-.25z"/></svg> السلة<span class="badge" id="cartCount" hidden>0</span></a>
+            <a class="hdr-btn" id="wishlistBtn" href="#"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> <span data-i18n="hdr.wishlist">مفضلتي</span><span class="badge" id="wishlistCount" hidden>0</span></a>
+            <a class="hdr-btn" id="cartBtn" href="#"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM7.17 14.75l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1 1 0 0 0 20 4.25H5.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h12v-2H7.42a.25.25 0 0 1-.25-.25z"/></svg> <span data-i18n="hdr.cart">السلة</span><span class="badge" id="cartCount" hidden>0</span></a>
             <a class="hdr-btn" id="accountBtn" href="#"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg> <span id="accountLabel">تسجيل الدخول</span></a>
         </div>
     </div>
@@ -48,26 +48,26 @@
 <!-- NAV -->
 <nav class="nav">
     <div class="nav-inner">
-        <div class="nav-cat">جميع الفئات <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></div>
-        <a href="#">الإلكترونيات</a>
-        <a href="#">مبايلات</a>
-        <a href="#">رجالية</a>
-        <a href="#">نسائية</a>
-        <a href="#">المنزل</a>
-        <a href="#">الجمال والأزياء</a>
-        <a href="#">الأطفال و اللاعب</a>
-        <a href="#">سوبر ماركات</a>
-        <a href="#">العروض</a>
+        <div class="nav-cat"><span data-i18n="nav.all">جميع الفئات</span> <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></div>
+        <a href="#" data-i18n="nav.electronics">الإلكترونيات</a>
+        <a href="#" data-i18n="nav.mobiles">مبايلات</a>
+        <a href="#" data-i18n="nav.men">رجالية</a>
+        <a href="#" data-i18n="nav.women">نسائية</a>
+        <a href="#" data-i18n="nav.home">المنزل</a>
+        <a href="#" data-i18n="nav.beauty">الجمال والأزياء</a>
+        <a href="#" data-i18n="nav.kids">الأطفال و اللاعب</a>
+        <a href="#" data-i18n="nav.super">سوبر ماركات</a>
+        <a href="#" data-i18n="nav.deals">العروض</a>
     </div>
 </nav>
 
 <!-- BREADCRUMB -->
 <div class="breadcrumb">
     <div class="breadcrumb-inner">
-        <a href="#">الرئيسية</a><span class="sep"> ‹ </span>
-        <a href="#">الإلكترونيات والموبايلات</a><span class="sep"> ‹ </span>
-        <a href="#">الموبايلات وملحقاتها</a><span class="sep"> ‹ </span>
-        <span style="color:#333">الهواتف الذكية</span>
+        <a href="#" data-i18n="crumb.home">الرئيسية</a><span class="sep" data-i18n="crumb.sep"> ‹ </span>
+        <a href="#" data-i18n="crumb.electronics">الإلكترونيات والموبايلات</a><span class="sep" data-i18n="crumb.sep"> ‹ </span>
+        <a href="#" data-i18n="crumb.mobiles">الموبايلات وملحقاتها</a><span class="sep" data-i18n="crumb.sep"> ‹ </span>
+        <span style="color:#333" data-i18n="crumb.smartphones">الهواتف الذكية</span>
     </div>
 </div>
 
@@ -77,50 +77,50 @@
     <aside class="sidebar">
         <!-- الفئة -->
         <div class="filter-box">
-            <div class="filter-header"><h4>الفئة</h4><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></div>
+            <div class="filter-header"><h4 data-i18n="f.category">الفئة</h4><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></div>
             <ul class="filter-list" id="catList">
-                <li><span>الكل</span><input type="radio" name="cat" value="" checked></li>
+                <li><span data-i18n="f.all">الكل</span><input type="radio" name="cat" value="" checked></li>
             </ul>
-            <span class="show-more">عرض المزيد</span>
+            <span class="show-more" data-i18n="f.more">عرض المزيد</span>
         </div>
 
         <!-- الماركة -->
         <div class="filter-box">
-            <div class="filter-header"><h4>الماركة</h4><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></div>
+            <div class="filter-header"><h4 data-i18n="f.brand">الماركة</h4><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></div>
             <ul class="filter-list" id="brandList">
-                <li><span>الكل</span><input type="radio" name="brand" value="" checked></li>
+                <li><span data-i18n="f.all">الكل</span><input type="radio" name="brand" value="" checked></li>
             </ul>
-            <span class="show-more">عرض المزيد</span>
+            <span class="show-more" data-i18n="f.more">عرض المزيد</span>
         </div>
 
         <!-- السعر -->
         <div class="filter-box">
-            <div class="filter-header"><h4>السعر</h4><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></div>
+            <div class="filter-header"><h4 data-i18n="f.price">السعر</h4><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></div>
             <div class="price-slider">
                 <div class="price-fill"></div>
                 <div class="price-dot l"></div>
                 <div class="price-dot r"></div>
             </div>
             <div class="price-inputs">
-                <div class="pi"><label>من</label><input type="text" id="priceMin" inputmode="numeric" placeholder="0"></div>
-                <div class="pi"><label>الى</label><input type="text" id="priceMax" inputmode="numeric" placeholder="50000"></div>
+                <div class="pi"><label data-i18n="f.from">من</label><input type="text" id="priceMin" inputmode="numeric" placeholder="0"></div>
+                <div class="pi"><label data-i18n="f.to">الى</label><input type="text" id="priceMax" inputmode="numeric" placeholder="50000"></div>
             </div>
         </div>
 
         <!-- اللون -->
         <div class="filter-box">
-            <div class="filter-header"><h4>اللون</h4><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></div>
+            <div class="filter-header"><h4 data-i18n="f.color">اللون</h4><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></div>
             <ul class="filter-list color-list" id="colorList">
-                <li><div class="color-left"><span>الكل</span></div><input type="radio" name="color" value="" checked></li>
+                <li><div class="color-left"><span data-i18n="f.all">الكل</span></div><input type="radio" name="color" value="" checked></li>
             </ul>
-            <span class="show-more">عرض المزيد</span>
+            <span class="show-more" data-i18n="f.more">عرض المزيد</span>
         </div>
 
         <!-- التقييم -->
         <div class="filter-box">
-            <div class="filter-header"><h4>التقييم</h4><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></div>
+            <div class="filter-header"><h4 data-i18n="f.rating">التقييم</h4><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></div>
             <ul class="filter-list rating-list" id="ratingList">
-                <li><div class="rating-left"><span>الكل</span></div><input type="radio" name="rate" value="" checked></li>
+                <li><div class="rating-left"><span data-i18n="f.all">الكل</span></div><input type="radio" name="rate" value="" checked></li>
                 <li><div class="rating-left"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><input type="radio" name="rate" value="5"></li>
                 <li><div class="rating-left"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="g" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><input type="radio" name="rate" value="4"></li>
                 <li><div class="rating-left"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="g" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="g" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><input type="radio" name="rate" value="3"></li>
@@ -128,11 +128,11 @@
             </ul>
         </div>
 
-        <button class="reset-btn">إعادة ضبط</button>
+        <button class="reset-btn" data-i18n="f.reset">إعادة ضبط</button>
 
         <!-- PROMO -->
         <div class="promo-box">
-            
+
             <img class="promo-img" id="promoImg" alt="promo" hidden>
         </div>
     </aside>
@@ -140,22 +140,22 @@
     <section class="products">
         <div class="results-bar">
             <div class="results-left">
-                <button class="filter-toggle"><svg viewBox="0 0 24 24"><path d="M3 5h18v2H3V5zm3 5h12v2H6v-2zm3 5h6v2H9v-2z"/></svg> تصفية</button>
+                <button class="filter-toggle"><svg viewBox="0 0 24 24"><path d="M3 5h18v2H3V5zm3 5h12v2H6v-2zm3 5h6v2H9v-2z"/></svg> <span data-i18n="res.filter">تصفية</span></button>
                 <div class="results-count" id="resultsCount"></div>
-                <div class="sort-drop">ترتيب حسب:
+                <div class="sort-drop"><span data-i18n="res.sortBy">ترتيب حسب:</span>
                     <select id="sortSelect">
-                        <option value="best_selling">الأكثر مبيعاً</option>
-                        <option value="price_asc">السعر: من الأقل إلى الأعلى</option>
-                        <option value="price_desc">السعر: من الأعلى إلى الأقل</option>
-                        <option value="rating_desc">الأعلى تقييماً</option>
-                        <option value="newest">الأحدث</option>
-                        <option value="popular">الأكثر شهرة</option>
+                        <option value="best_selling" data-i18n="sort.best">الأكثر مبيعاً</option>
+                        <option value="price_asc" data-i18n="sort.priceAsc">السعر: من الأقل إلى الأعلى</option>
+                        <option value="price_desc" data-i18n="sort.priceDesc">السعر: من الأعلى إلى الأقل</option>
+                        <option value="rating_desc" data-i18n="sort.rating">الأعلى تقييماً</option>
+                        <option value="newest" data-i18n="sort.newest">الأحدث</option>
+                        <option value="popular" data-i18n="sort.popular">الأكثر شهرة</option>
                     </select>
                     <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></div>
             </div>
-            <div class="view-btns">
-                <div class="view-btn active"><svg viewBox="0 0 16 16"><rect x="0" y="0" width="16" height="3"/><rect x="0" y="6.5" width="16" height="3"/><rect x="0" y="13" width="16" height="3"/></svg></div>
-                <div class="view-btn"><svg viewBox="0 0 16 16"><rect x="0" y="0" width="7" height="7" rx="1"/><rect x="9" y="0" width="7" height="7" rx="1"/><rect x="0" y="9" width="7" height="7" rx="1"/><rect x="9" y="9" width="7" height="7" rx="1"/></svg></div>
+            <div class="view-btns" role="group" aria-label="عرض المنتجات">
+                <div class="view-btn active" role="button" tabindex="0" aria-pressed="true" title="عرض قائمة"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="0" y="0" width="16" height="3"/><rect x="0" y="6.5" width="16" height="3"/><rect x="0" y="13" width="16" height="3"/></svg></div>
+                <div class="view-btn" role="button" tabindex="0" aria-pressed="false" title="عرض شبكة"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="0" y="0" width="7" height="7" rx="1"/><rect x="9" y="0" width="7" height="7" rx="1"/><rect x="0" y="9" width="7" height="7" rx="1"/><rect x="9" y="9" width="7" height="7" rx="1"/></svg></div>
             </div>
         </div>
 
@@ -172,79 +172,79 @@
     <div class="footer-help">
         <div class="footer-help-inner">
             <div>
-                <h3>نحن دايماً جاهزون لمساعدتك</h3>
-                <p>تواصل معنا من خلال أي من قنوات الدعم التالية:</p>
+                <h3 data-i18n="ft.helpTitle">نحن دايماً جاهزون لمساعدتك</h3>
+                <p data-i18n="ft.helpText">تواصل معنا من خلال أي من قنوات الدعم التالية:</p>
             </div>
             <div class="footer-help-contacts">
-                <div class="fhc"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg> مركز المساعدة<br><strong>help.watanya.com</strong></div>
-                <div class="fhc"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> الدعم عبر البريد الإلكتروني<br><strong>egypt@watanya.com</strong></div>
-                <div class="fhc"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg> الدعم عبر الهاتف<br><strong>16358</strong></div>
+                <div class="fhc"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg> <span data-i18n="top.help">مركز المساعدة</span><br><strong>help.watanya.com</strong></div>
+                <div class="fhc"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> <span data-i18n="top.email">الدعم عبر البريد الإلكتروني</span><br><strong>egypt@watanya.com</strong></div>
+                <div class="fhc"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg> <span data-i18n="top.phone">الدعم عبر الهاتف</span><br><strong>16358</strong></div>
             </div>
         </div>
     </div>
     <div class="footer-grid">
         <div class="footer-col">
-            <h5>الإلكترونيات</h5>
+            <h5 data-i18n="ft.electronics">الإلكترونيات</h5>
             <ul>
-                <li><a href="#">الهواتف المحمولة</a></li>
-                <li><a href="#">أجهزة لابتوب</a></li>
-                <li><a href="#">أجهزة كمبيوتر المحمولة</a></li>
-                <li><a href="#">التابلت</a></li>
-                <li><a href="#">الكاميرات و الصور و تسجيل الفيديو</a></li>
+                <li><a href="#" data-i18n="ft.mobiles">الهواتف المحمولة</a></li>
+                <li><a href="#" data-i18n="ft.laptops">أجهزة لابتوب</a></li>
+                <li><a href="#" data-i18n="ft.notebooks">أجهزة كمبيوتر المحمولة</a></li>
+                <li><a href="#" data-i18n="ft.tablets">التابلت</a></li>
+                <li><a href="#" data-i18n="ft.cameras">الكاميرات و الصور و تسجيل الفيديو</a></li>
             </ul>
         </div>
         <div class="footer-col">
-            <h5>الأزياء</h5>
+            <h5 data-i18n="ft.fashion">الأزياء</h5>
             <ul>
-                <li><a href="#">أزياء نسائية</a></li>
-                <li><a href="#">أزياء رجالية</a></li>
-                <li><a href="#">أزياء أطفال</a></li>
-                <li><a href="#">ساعات بد رجالي</a></li>
-                <li><a href="#">ساعات بد نسائي</a></li>
+                <li><a href="#" data-i18n="ft.womenWear">أزياء نسائية</a></li>
+                <li><a href="#" data-i18n="ft.menWear">أزياء رجالية</a></li>
+                <li><a href="#" data-i18n="ft.kidsWear">أزياء أطفال</a></li>
+                <li><a href="#" data-i18n="ft.menWatch">ساعات بد رجالي</a></li>
+                <li><a href="#" data-i18n="ft.womenWatch">ساعات بد نسائي</a></li>
             </ul>
         </div>
         <div class="footer-col">
-            <h5>المطبخ والأجهزة المنزلية</h5>
+            <h5 data-i18n="ft.kitchen">المطبخ والأجهزة المنزلية</h5>
             <ul>
-                <li><a href="#">المطبخ و ودادات الطعام</a></li>
-                <li><a href="#">مستلزمات السير</a></li>
-                <li><a href="#">مستلزمات الحمام</a></li>
-                <li><a href="#">_device المنازل</a></li>
-                <li><a href="#">الاجهزة المكتبية</a></li>
-                <li><a href="#">الادوات وتحسين المنزل</a></li>
+                <li><a href="#" data-i18n="ft.kitchenDining">المطبخ و ودادات الطعام</a></li>
+                <li><a href="#" data-i18n="ft.cleaning">مستلزمات السير</a></li>
+                <li><a href="#" data-i18n="ft.bathroom">مستلزمات الحمام</a></li>
+                <li><a href="#" data-i18n="ft.homeDevices">_device المنازل</a></li>
+                <li><a href="#" data-i18n="ft.office">الاجهزة المكتبية</a></li>
+                <li><a href="#" data-i18n="ft.tools">الادوات وتحسين المنزل</a></li>
             </ul>
         </div>
         <div class="footer-col">
-            <h5>الجمال</h5>
+            <h5 data-i18n="ft.beauty">الجمال</h5>
             <ul>
-                <li><a href="#">العطور السائلة</a></li>
-                <li><a href="#">عطور الرجاج</a></li>
-                <li><a href="#">المكياج</a></li>
-                <li><a href="#">العناية بالبشرة</a></li>
-                <li><a href="#">العناية بالشعر</a></li>
-                <li><a href="#">العناية الشاملة</a></li>
+                <li><a href="#" data-i18n="ft.liquidPerfume">العطور السائلة</a></li>
+                <li><a href="#" data-i18n="ft.perfume">عطور الرجاج</a></li>
+                <li><a href="#" data-i18n="ft.makeup">المكياج</a></li>
+                <li><a href="#" data-i18n="ft.skinCare">العناية بالبشرة</a></li>
+                <li><a href="#" data-i18n="ft.hairCare">العناية بالشعر</a></li>
+                <li><a href="#" data-i18n="ft.personalCare">العناية الشاملة</a></li>
             </ul>
         </div>
         <div class="footer-col">
-            <h5>الأطفال</h5>
+            <h5 data-i18n="ft.kids">الأطفال</h5>
             <ul>
-                <li><a href="#">عباءات الأطفال واكسسواراتنا</a></li>
-                <li><a href="#">مقاطع الأطفال</a></li>
-                <li><a href="#">ملابس الأطفال</a></li>
-                <li><a href="#">مستلزمات الرضع والاطفال</a></li>
-                <li><a href="#">الاستحمام و العناية بالبشرة</a></li>
-                <li><a href="#">العاب الأطفال</a></li>
+                <li><a href="#" data-i18n="ft.kidsWearAcc">عباءات الأطفال واكسسواراتنا</a></li>
+                <li><a href="#" data-i18n="ft.kidsVideos">مقاطع الأطفال</a></li>
+                <li><a href="#" data-i18n="ft.kidsClothes">ملابس الأطفال</a></li>
+                <li><a href="#" data-i18n="ft.babyCare">مستلزمات الرضع والاطفال</a></li>
+                <li><a href="#" data-i18n="ft.bathCare">الاستحمام و العناية بالبشرة</a></li>
+                <li><a href="#" data-i18n="ft.toys">العاب الأطفال</a></li>
             </ul>
         </div>
         <div class="footer-col">
-            <h5>أفضل الماركات</h5>
+            <h5 data-i18n="ft.brands">أفضل الماركات</h5>
             <ul>
-                <li><a href="#">أبل</a></li>
-                <li><a href="#">سامسونج</a></li>
-                <li><a href="#">ديل</a></li>
-                <li><a href="#">راي فان</a></li>
-                <li><a href="#">تمفال</a></li>
-                <li><a href="#">يونيون بايرس</a></li>
+                <li><a href="#" data-i18n="ft.apple">أبل</a></li>
+                <li><a href="#" data-i18n="ft.samsung">سامسونج</a></li>
+                <li><a href="#" data-i18n="ft.dell">ديل</a></li>
+                <li><a href="#" data-i18n="ft.rayfan">راي فان</a></li>
+                <li><a href="#" data-i18n="ft.tamfal">تمفال</a></li>
+                <li><a href="#" data-i18n="ft.union">يونيون بايرس</a></li>
             </ul>
         </div>
     </div>
@@ -260,15 +260,15 @@
     </div>
     <div class="footer-bottom">
         <div class="footer-bottom-links">
-            <a href="#">سياسة الخصوصية</a>
-            <a href="#">الشروط و الأحكام</a>
-            <a href="#">سياسة الاستبدال والاسترجاع</a>
-            <a href="#">خريطة الموقع</a>
-            <a href="admin.html">لوحة تحكم المشرف</a>
+            <a href="#" data-i18n="ft.privacy">سياسة الخصوصية</a>
+            <a href="#" data-i18n="ft.terms">الشروط و الأحكام</a>
+            <a href="#" data-i18n="ft.returns">سياسة الاستبدال والاسترجاع</a>
+            <a href="#" data-i18n="ft.sitemap">خريطة الموقع</a>
+            <a href="admin.html" data-i18n="ft.admin">لوحة تحكم المشرف</a>
             <a href="#">igos</a>
             <a href="#">sabq store</a>
         </div>
-        <p>© 2024 www.watanya.com. جميع الحقوق محفوظة.</p>
+        <p data-i18n="ft.copyright">© 2024 www.watanya.com. جميع الحقوق محفوظة.</p>
         <div class="pay-row">
             <span class="pay-icon">VISA</span>
             <span class="pay-icon">MC</span>
@@ -281,39 +281,39 @@
 <div class="modal" id="authModal" hidden>
     <div class="modal-backdrop" data-close></div>
     <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="authTitle">
-        <button class="modal-x" data-close aria-label="إغلاق">&times;</button>
-        <h3 id="authTitle">تسجيل الدخول</h3>
+        <button class="modal-x" data-close aria-label="إغلاق" data-i18n-aria="m.close">&times;</button>
+        <h3 id="authTitle" data-i18n="m.loginTitle">تسجيل الدخول</h3>
         <div class="tabs">
-            <button class="tab active" data-tab="login">دخول</button>
-            <button class="tab" data-tab="register">حساب جديد</button>
+            <button class="tab active" data-tab="login" data-i18n="m.tabLogin">دخول</button>
+            <button class="tab" data-tab="register" data-i18n="m.tabRegister">حساب جديد</button>
         </div>
 
         <form class="auth-form" data-pane="login">
-            <label>البريد الإلكتروني أو رقم الجوال
+            <label><span data-i18n="m.identifier">البريد الإلكتروني أو رقم الجوال</span>
                 <input type="text" name="identifier" autocomplete="username" required>
             </label>
-            <label>كلمة المرور
+            <label><span data-i18n="m.password">كلمة المرور</span>
                 <input type="password" name="password" autocomplete="current-password" required>
             </label>
             <p class="form-error" data-error hidden></p>
-            <button class="btn-primary" type="submit">دخول</button>
+            <button class="btn-primary" type="submit" data-i18n="m.loginBtn">دخول</button>
         </form>
 
         <form class="auth-form" data-pane="register" hidden>
-            <label>الاسم الكامل
+            <label><span data-i18n="m.fullName">الاسم الكامل</span>
                 <input type="text" name="full_name" autocomplete="name" required>
             </label>
-            <label>البريد الإلكتروني
+            <label><span data-i18n="m.email">البريد الإلكتروني</span>
                 <input type="email" name="email" autocomplete="email" required>
             </label>
-            <label>رقم الجوال
+            <label><span data-i18n="m.phone">رقم الجوال</span>
                 <input type="tel" name="phone" placeholder="05xxxxxxxx" required>
             </label>
-            <label>كلمة المرور
+            <label><span data-i18n="m.password">كلمة المرور</span>
                 <input type="password" name="password" autocomplete="new-password" minlength="8" required>
             </label>
             <p class="form-error" data-error hidden></p>
-            <button class="btn-primary" type="submit">إنشاء الحساب</button>
+            <button class="btn-primary" type="submit" data-i18n="m.createBtn">إنشاء الحساب</button>
         </form>
     </div>
 </div>
@@ -322,8 +322,8 @@
 <div class="modal" id="cartModal" hidden>
     <div class="modal-backdrop" data-close></div>
     <div class="modal-box wide" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
-        <button class="modal-x" data-close aria-label="إغلاق">&times;</button>
-        <h3 id="cartTitle">سلة التسوق</h3>
+        <button class="modal-x" data-close aria-label="إغلاق" data-i18n-aria="m.close">&times;</button>
+        <h3 id="cartTitle" data-i18n="m.cartTitle">سلة التسوق</h3>
         <div id="cartBody" class="cart-body"></div>
     </div>
 </div>

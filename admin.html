@@ -39,20 +39,30 @@
             </a>
             <div class="admin-top-meta">
                 <span class="admin-name" id="adminName">مشرف</span>
-                <span class="admin-session" id="adminSession"></span>
             </div>
             <div class="admin-top-actions">
                 <a class="btn-ghost" href="index.html">المتجر</a>
+                <a class="btn-ghost" href="er.html">مخطط العلاقات</a>
                 <button class="btn-ghost" id="adminSignout" type="button">تسجيل الخروج</button>
             </div>
         </div>
     </header>
 
     <main class="admin-main">
-        <section class="stat-grid" id="statGrid" aria-live="polite"></section>
+        <nav class="admin-tabs" id="adminTabs">
+            <button type="button" class="tab-btn active" data-tab="dashboard">لوحة التحكم</button>
+            <button type="button" class="tab-btn" data-tab="products">المنتجات</button>
+            <button type="button" class="tab-btn" data-tab="categories">الفئات</button>
+            <button type="button" class="tab-btn" data-tab="brands">الماركات</button>
+            <button type="button" class="tab-btn" data-tab="customers">العملاء</button>
+            <button type="button" class="tab-btn" data-tab="admins">المدراء</button>
+            <button type="button" class="tab-btn" data-tab="carts">السلال</button>
+        </nav>
 
-        <div class="admin-cols">
-            <!-- orders -->
+        <!-- ========== dashboard: stats + orders ========== -->
+        <div class="tab-panel" data-panel="dashboard">
+            <section class="stat-grid" id="statGrid" aria-live="polite"></section>
+
             <section class="admin-card">
                 <div class="admin-card-head">
                     <h2>الطلبات</h2>
@@ -64,38 +74,289 @@
                 <div class="admin-table-wrap" id="ordersBody"></div>
                 <div class="pager" id="ordersPager" hidden></div>
             </section>
+        </div>
 
-            <!-- single product + price -->
+        <!-- ========== products ========== -->
+        <div class="tab-panel" data-panel="products" hidden>
             <section class="admin-card">
                 <div class="admin-card-head">
-                    <h2>منتج محدد</h2>
+                    <h2>المنتجات</h2>
+                    <div class="admin-filters">
+                        <input type="search" id="productQ" class="filter-input" placeholder="بحث بالاسم…">
+                        <select id="productBrand"></select>
+                        <select id="productActive">
+                            <option value="">كل المنتجات</option>
+                            <option value="1">المعروضة فقط</option>
+                            <option value="0">المخفية فقط</option>
+                        </select>
+                        <button class="btn-ghost" id="productNew" type="button">منتج جديد</button>
+                    </div>
                 </div>
-                <form class="admin-form" id="productForm" novalidate>
-                    <label>رقم المنتج
-                        <input type="text" name="id" inputmode="numeric" required>
-                    </label>
-                    <button class="btn-primary" type="submit">عرض</button>
-                </form>
-                <div id="productBody"></div>
+                <div class="admin-table-wrap" id="productsBody"></div>
+                <div class="pager" id="productsPager" hidden></div>
+            </section>
 
-                <form class="admin-form" id="priceForm" novalidate hidden>
-                    <h3 class="admin-sub">تعديل السعر</h3>
+            <!-- editor: create / edit everything on the products row -->
+            <section class="admin-card" id="productEditor" hidden>
+                <div class="admin-card-head">
+                    <h2 id="productEditorTitle">منتج جديد</h2>
+                    <button class="btn-ghost" id="productCancel" type="button">إغلاق</button>
+                </div>
+                <form class="admin-form" id="productEditForm" novalidate>
+                    <input type="hidden" name="id">
                     <div class="admin-grid-2">
-                        <label>السعر الأساسي
+                        <label>الاسم العربي *
+                            <input type="text" name="name_ar" maxlength="255" required>
+                        </label>
+                        <label>الاسم الإنجليزي
+                            <input type="text" name="name_en" maxlength="255">
+                        </label>
+                    </div>
+                    <div class="admin-grid-2">
+                        <label>الماركة
+                            <select name="brand_id" id="productBrandSelect"><option value="">بدون ماركة</option></select>
+                        </label>
+                        <label>المخزون
+                            <input type="number" name="stock_quantity" min="0" step="1" value="0">
+                        </label>
+                    </div>
+                    <label>الوصف
+                        <textarea name="description" rows="3" maxlength="5000"></textarea>
+                    </label>
+                    <div class="admin-grid-2">
+                        <label>السعر الأساسي *
                             <input type="number" name="base_price" min="0" step="0.01" required>
                         </label>
-                        <label>سعر البيع (اتركه فارغاً للرجوع للسعر الأساسي)
+                        <label>سعر البيع (اتركه فارغاً لعدم وجود عرض)
                             <input type="number" name="sale_price" min="0" step="0.01">
                         </label>
                     </div>
-                    <label>سبب التغيير
+                    <label>سبب تغيير السعر (يُسجَّل في سجل الأسعار)
                         <input type="text" name="reason" maxlength="190" placeholder="مثال: تخفيض موسمي">
                     </label>
-                    <button class="btn-primary" type="submit">حفظ السعر</button>
+                    <div class="admin-checks">
+                        <label class="check"><input type="checkbox" name="is_active" checked> معروض في المتجر</label>
+                        <label class="check"><input type="checkbox" name="is_featured"> منتج مميز</label>
+                        <label class="check"><input type="checkbox" name="is_loanable"> متاح بالتمويل</label>
+                    </div>
+                    <fieldset class="admin-fieldset">
+                        <legend>الفئات (علاقة product_categories)</legend>
+                        <div class="check-grid" id="productCats"></div>
+                    </fieldset>
+                    <div class="img-upload">
+                        <button class="btn-ghost" type="button" id="productImgBtn">رفع صورة</button>
+                        <input type="file" id="productImgInput" accept="image/png,image/jpeg,image/webp,image/gif,image/avif,image/svg+xml" hidden>
+                        <div class="img-preview" id="productImgPreview" hidden></div>
+                        <textarea name="images" rows="2" dir="ltr" placeholder="uploads/iphone.png" hidden></textarea>
+                    </div>
+                    <button class="btn-primary" type="submit">حفظ المنتج</button>
                 </form>
 
-                <h3 class="admin-sub">سجل الأسعار</h3>
-                <div class="admin-table-wrap" id="historyBody"></div>
+                <div id="productHistoryWrap" hidden>
+                    <h3 class="admin-sub">سجل الأسعار (price_history)</h3>
+                    <div class="admin-table-wrap" id="historyBody"></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========== categories ========== -->
+        <div class="tab-panel" data-panel="categories" hidden>
+            <section class="admin-card" id="categoryEditor" hidden>
+                <div class="admin-card-head">
+                    <h2 id="categoryEditorTitle">فئة جديدة</h2>
+                    <button class="btn-ghost" id="categoryCancel" type="button">إغلاق</button>
+                </div>
+                <form class="admin-form" id="categoryEditForm" novalidate>
+                    <input type="hidden" name="id">
+                    <div class="admin-grid-2">
+                        <label>الاسم العربي *
+                            <input type="text" name="name_ar" maxlength="120" required>
+                        </label>
+                        <label>الاسم الإنجليزي
+                            <input type="text" name="name_en" maxlength="120">
+                        </label>
+                    </div>
+                    <div class="admin-grid-2">
+                        <label>الفئة الأب (علاقة parent_id)
+                            <select name="parent_id" id="categoryParent"><option value="">بدون (فئة رئيسية)</option></select>
+                        </label>
+                        <label>الترتيب
+                            <input type="number" name="sort_order" step="1" value="0">
+                        </label>
+                    </div>
+                    <label class="check"><input type="checkbox" name="is_active" checked> فئة معروضة</label>
+                    <button class="btn-primary" type="submit">حفظ الفئة</button>
+                </form>
+            </section>
+
+            <section class="admin-card">
+                <div class="admin-card-head">
+                    <h2>الفئات</h2>
+                    <button class="btn-ghost" id="categoryNew" type="button">فئة جديدة</button>
+                </div>
+                <div class="admin-table-wrap" id="categoriesBody"></div>
+            </section>
+        </div>
+
+        <!-- ========== brands ========== -->
+        <div class="tab-panel" data-panel="brands" hidden>
+            <section class="admin-card" id="brandEditor" hidden>
+                <div class="admin-card-head">
+                    <h2 id="brandEditorTitle">ماركة جديدة</h2>
+                    <button class="btn-ghost" id="brandCancel" type="button">إغلاق</button>
+                </div>
+                <form class="admin-form" id="brandEditForm" novalidate>
+                    <input type="hidden" name="id">
+                    <div class="admin-grid-2">
+                        <label>الاسم العربي *
+                            <input type="text" name="name_ar" maxlength="120" required>
+                        </label>
+                        <label>الاسم الإنجليزي
+                            <input type="text" name="name_en" maxlength="120">
+                        </label>
+                    </div>
+                    <label class="check"><input type="checkbox" name="is_active" checked> ماركة معروضة</label>
+                    <button class="btn-primary" type="submit">حفظ الماركة</button>
+                </form>
+            </section>
+
+            <section class="admin-card">
+                <div class="admin-card-head">
+                    <h2>الماركات</h2>
+                    <button class="btn-ghost" id="brandNew" type="button">ماركة جديدة</button>
+                </div>
+                <div class="admin-table-wrap" id="brandsBody"></div>
+            </section>
+        </div>
+
+        <!-- ========== customers ========== -->
+        <div class="tab-panel" data-panel="customers" hidden>
+            <section class="admin-card" id="customerEditor" hidden>
+                <div class="admin-card-head">
+                    <h2 id="customerEditorTitle">عميل جديد</h2>
+                    <button class="btn-ghost" id="customerCancel" type="button">إغلاق</button>
+                </div>
+                <form class="admin-form" id="customerEditForm" novalidate>
+                    <input type="hidden" name="id">
+                    <div class="admin-grid-2">
+                        <label>الاسم الكامل *
+                            <input type="text" name="full_name" maxlength="120" required>
+                        </label>
+                        <label>البريد الإلكتروني *
+                            <input type="email" name="email" maxlength="190" required>
+                        </label>
+                    </div>
+                    <div class="admin-grid-2">
+                        <label>رقم الجوال *
+                            <input type="text" name="phone" maxlength="20" required>
+                        </label>
+                        <label>كلمة المرور
+                            <input type="text" name="password" maxlength="72"
+                                   placeholder="اتركها فارغة عند التعديل لعدم التغيير">
+                        </label>
+                    </div>
+                    <div class="admin-grid-2">
+                        <label>الدولة
+                            <input type="text" name="country" maxlength="60">
+                        </label>
+                        <label>المدينة
+                            <input type="text" name="city" maxlength="60">
+                        </label>
+                    </div>
+                    <div class="admin-grid-2">
+                        <label>الحي
+                            <input type="text" name="district" maxlength="90">
+                        </label>
+                        <label>الشارع
+                            <input type="text" name="street" maxlength="190">
+                        </label>
+                    </div>
+                    <label>المبنى
+                        <input type="text" name="building" maxlength="60">
+                    </label>
+                    <label class="check"><input type="checkbox" name="is_active" checked> حساب نشط</label>
+                    <button class="btn-primary" type="submit">حفظ العميل</button>
+                </form>
+            </section>
+
+            <section class="admin-card">
+                <div class="admin-card-head">
+                    <h2>العملاء</h2>
+                    <div class="admin-filters">
+                        <input type="search" id="customerQ" class="filter-input" placeholder="بحث بالاسم أو البريد…">
+                        <select id="customerActive">
+                            <option value="">الكل</option>
+                            <option value="1">النشطون</option>
+                            <option value="0">المعطلون</option>
+                        </select>
+                        <button class="btn-ghost" id="customerNew" type="button">عميل جديد</button>
+                    </div>
+                </div>
+                <div class="admin-table-wrap" id="customersBody"></div>
+                <div class="pager" id="customersPager" hidden></div>
+            </section>
+        </div>
+
+        <!-- ========== admin accounts ========== -->
+        <div class="tab-panel" data-panel="admins" hidden>
+            <section class="admin-card" id="adminEditor" hidden>
+                <div class="admin-card-head">
+                    <h2 id="adminEditorTitle">حساب مشرف جديد</h2>
+                    <button class="btn-ghost" id="adminAccountCancel" type="button">إغلاق</button>
+                </div>
+                <form class="admin-form" id="adminEditForm" novalidate>
+                    <input type="hidden" name="id">
+                    <div class="admin-grid-2">
+                        <label>الاسم الكامل *
+                            <input type="text" name="full_name" maxlength="120" required>
+                        </label>
+                        <label>البريد الإلكتروني *
+                            <input type="email" name="email" maxlength="190" required>
+                        </label>
+                    </div>
+                    <div class="admin-grid-2">
+                        <label>رقم الجوال *
+                            <input type="text" name="phone" maxlength="20" required>
+                        </label>
+                        <label>كلمة المرور
+                            <input type="text" name="password" maxlength="72"
+                                   placeholder="مطلوبة عند الإنشاء، فارغة = دون تغيير">
+                        </label>
+                    </div>
+                    <label class="check"><input type="checkbox" name="is_active" checked> حساب نشط</label>
+                    <button class="btn-primary" type="submit">حفظ الحساب</button>
+                </form>
+            </section>
+
+            <section class="admin-card">
+                <div class="admin-card-head">
+                    <h2>المدراء (admins)</h2>
+                    <button class="btn-ghost" id="adminAccountNew" type="button">حساب جديد</button>
+                </div>
+                <div class="admin-table-wrap" id="adminsBody"></div>
+            </section>
+        </div>
+
+        <!-- ========== carts ========== -->
+        <div class="tab-panel" data-panel="carts" hidden>
+            <section class="admin-card" id="cartDetailCard" hidden>
+                <div class="admin-card-head">
+                    <h2 id="cartDetailTitle">سلة</h2>
+                    <button class="btn-ghost" id="cartDetailClose" type="button">إغلاق</button>
+                </div>
+                <div class="admin-table-wrap" id="cartLinesBody"></div>
+            </section>
+
+            <section class="admin-card">
+                <div class="admin-card-head">
+                    <h2>سلال التسوق (cart_items / cart_product)</h2>
+                    <div class="admin-filters">
+                        <input type="search" id="cartQ" class="filter-input" placeholder="بحث باسم العميل…">
+                        <button class="btn-ghost" id="cartsReload" type="button">تحديث</button>
+                    </div>
+                </div>
+                <div class="admin-table-wrap" id="cartsBody"></div>
+                <div class="pager" id="cartsPager" hidden></div>
             </section>
         </div>
     </main>

@@ -134,12 +134,24 @@ at `/api/me` (cart, wishlist, orders, reviews).
 | `POST`/`DELETE` | `/api/me/reviews`, `/api/me/reviews/:id` | Create or delete your own review |
 | `GET` | `/api/products/:id/reviews` | Public review list for a product |
 | `GET` | `/api/admin/stats`, `/api/admin/orders` | |
-| `GET` | `/api/admin/products/:id`, `/api/admin/products/:id/price-history` | |
+| `GET` | `/api/admin/products` | Admin product list: hidden rows included, `q`/`brand`/`active` filters |
+| `GET` | `/api/admin/categories`, `/api/admin/brands` | Flat lists including inactive rows |
+| `GET` | `/api/admin/products/:id`, `/api/admin/products/:id/price-history` | `:id` payload also carries `category_ids` |
 | `POST`/`PATCH`/`DELETE` | `/api/admin/products/:id`, `/api/admin/brands/:id`, `/api/admin/categories/:id` | |
+| `DELETE` | `/api/admin/price-history/:id` | Removes one history row |
+| `GET`/`POST` | `/api/admin/customers` | List with `q`/`active` filters, or create |
+| `GET`/`PATCH`/`DELETE` | `/api/admin/customers/:id` | `PATCH` accepts an optional `password` reset |
+| `GET`/`POST` | `/api/admin/admins` | Admin accounts |
+| `PATCH`/`DELETE` | `/api/admin/admins/:id` | Cannot deactivate or delete your own account |
+| `GET` | `/api/admin/carts`, `/api/admin/carts/:id` | Cart list and one cart with its lines |
+| `PATCH`/`DELETE` | `/api/admin/carts/:id/lines/:lineId` | `amount: 0` or `DELETE` drops the line |
+| `DELETE` | `/api/admin/carts/:id` | Removes the whole cart |
 | `PATCH` | `/api/admin/orders/:id/status` | |
 
-There is no admin product list route; admin reads a single product by id and uses
-the public product routes for browsing.
+A partial `PATCH` only touches the fields it receives: the update schemas
+deliberately carry no `.default()` values (in Zod v4 a default would still fire
+through `.partial()` and silently reset omitted columns such as a product's
+categories, images or colors).
 
 When a bearer token is sent to `/api/products`, each product gains `in_cart` and
 `in_wishlist` flags so the storefront can render that state directly.
@@ -158,12 +170,15 @@ separate sign-in page for `/api/auth/admin/login`; the storefront footer links
 to it. It stores its token under `watanya.admin.*`, apart from the customer
 keys, so signing in on one page never disturbs a session on the other.
 
-`POST /api/auth/admin/login` returns an access token only - no refresh token -
-so a panel session is hard-capped at `JWT_EXPIRES_IN` (15 minutes by default).
-The header shows a countdown, and any `401`/`403` (expired token, deactivated
-admin) drops the token and returns to the sign-in card.
+`POST /api/auth/admin/login` returns an access token only - no refresh token.
+Sessions have no timeout: the token never expires on its own, and any
+`401`/`403` (revoked token, deactivated admin) drops it and returns to the
+sign-in card.
 
-The panel covers the dashboard stats, the order list with status changes, and a
-single-product view with price history and a price/reason form. It uses the
-admin API only, so it grants no access the API would not already give it.
+The panel is tabbed and covers every table of `er.html`: dashboard stats and
+orders, the product list with a full editor (names, brand, prices, stock,
+flags, `product_categories` checkboxes, `product_images` paths) plus its price
+history, categories, brands, customers, admin accounts and shopping carts -
+including create, edit and delete for each. It uses the admin API only, so it
+grants no access the API would not already give it.
 
